@@ -30,9 +30,14 @@ namespace SebastianSuwalaHelloWorld
             fluffyHorse.move();
             Console.WriteLine();
 
-            Fish fish = new Fish { Name = "Nemo", Age = 1, Species = "Blazenek" };
-            Console.WriteLine(fish);
-            fish.move();
+            Fish fish1 = new Fish { Name = "Nemo", Age = 1, Species = "Blazenek" };
+            Console.WriteLine(fish1);
+            fish1.move();
+            Console.WriteLine();
+
+            Animal fish2 = new Fish { Name = "Dziwny twor", Age = 8, Species = "Ryba z lapami?" };
+            Console.WriteLine(fish2);
+            fish2.move();
             Console.WriteLine();
 
             Dog piesel = new Dog { Name = "Dyzio", Age = 5, Species = "Mops" };
