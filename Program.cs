@@ -6,9 +6,45 @@ namespace SebastianSuwalaHelloWorld
     {
         static void Main(string[] args)
         {
-            //Conditions();
+            Tables();
+            //ConditionsAndLoops();
             //Calculator();
             Console.ReadKey();
+        }
+
+        private static void Tables()
+        {
+            Console.WriteLine("Podaj rozmiar tablicy:");
+            string sizeAsString = Console.ReadLine();
+            Console.WriteLine("Podaj maksymalna wartosc jaka moze byc przechowywana w komorkach tablicy:");
+            string maxValueAsString = Console.ReadLine();
+
+            try
+            {
+                int size = int.Parse(sizeAsString);
+                int maxValue = int.Parse(maxValueAsString);
+                Random randomNumber = new Random();
+
+                if (size > 0)
+                {
+                    int[] someNumbers = new int[size];
+                    for (int i = 0; i < size; i++)
+                    {
+                        someNumbers[i] = randomNumber.Next(maxValue);
+                    }
+
+                    foreach (int number in someNumbers)
+                    {
+                        Console.Write($"{number} ");
+                        Console.WriteLine();
+                    }
+                }
+                else Console.WriteLine("Rozmiar tablicy musi byc wiekszy od 0!");
+            }
+            catch
+            {
+                Console.WriteLine("Co najmniej jedna z podanych wartosci jest nieprawidlowa!");
+            }
         }
 
         private static void Conditions()
