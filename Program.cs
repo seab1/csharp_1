@@ -6,6 +6,22 @@ namespace SebastianSuwalaHelloWorld
     {
         static void Main(string[] args)
         {
+            string ifToContinue = null;
+
+            do
+            {
+                Punkt_II();
+
+                Console.WriteLine("Kontynuowac? (t/n):");
+                ifToContinue = Console.ReadLine();
+
+                if (ifToContinue != "n" && ifToContinue != "N" && ifToContinue != "t" && ifToContinue != "T")
+                {
+                    Console.WriteLine("Nie powiedziales nie... zatem kontynuuje");
+                    Console.WriteLine();
+                }
+            } while (ifToContinue != "n" && ifToContinue != "N");
+
             //Punkt_II();
             Console.ReadKey();
         }
