@@ -4,11 +4,20 @@ using System.Collections.Generic;
 
 namespace SebastianSuwalaHelloWorld
 {
+    class Animal
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public string Species { get; set; }
+
+        public void move() { Console.WriteLine("Mkne i hasam!"); }
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
-            Collections();
+            //Collections();
             //Sort();
             //Tables();
             //ConditionsAndLoops();
