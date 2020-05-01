@@ -6,6 +6,12 @@ namespace SebastianSuwalaHelloWorld
     {
         static void Main(string[] args)
         {
+            //Punkt_II();
+            Console.ReadKey();
+        }
+
+        private static void Punkt_II()
+        {
             Console.WriteLine("Podaj pierwsza liczbe:");
             string number1AsString = Console.ReadLine();
             Console.WriteLine("Podaj druga liczbe:");
@@ -18,7 +24,7 @@ namespace SebastianSuwalaHelloWorld
                 double number1 = double.Parse(number1AsString);
                 double number2 = double.Parse(number2AsString);
 
-                switch(sign)
+                switch (sign)
                 {
                     case "+":
                         Console.WriteLine($"{number1} + {number2} = {number1 + number2}");
@@ -45,7 +51,6 @@ namespace SebastianSuwalaHelloWorld
             {
                 Console.WriteLine("Co najmniej jedna z podanych wartosci jest nieprawidlowa!");
             }
-            Console.ReadKey();
         }
     }
 }
