@@ -6,8 +6,9 @@ namespace SebastianSuwalaHelloWorld
     {
         static void Main(string[] args)
         {
-            string bonjourMessage = "Full steam ahead!";
-            Console.WriteLine(bonjourMessage);
+            Console.WriteLine("Wpisz cos:");
+            string userValue = Console.ReadLine();
+            Console.WriteLine("Wpisales: " + userValue);
             Console.ReadKey();
         }
     }
