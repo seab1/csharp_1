@@ -11,15 +11,33 @@ namespace SebastianSuwalaHelloWorld
         public string Species { get; set; }
 
         public void move() { Console.WriteLine("Mkne i hasam!"); }
+
+        public override string ToString()
+        {
+            return $"Bonjour, jestem {Name}, moj wiek to: {Age}, zas gatunek: {Species}";
+        }
     }
+
+    class Fish : Animal { new public void move() { Console.WriteLine("Bul bul bul"); } }
+    class Dog : Animal { new public void move() { Console.WriteLine("<Bieg> hau hau"); } }
 
     class Program
     {
         static void Main(string[] args)
         {
             Animal fluffyHorse = new Animal { Name = "Basiur", Age = 2, Species = "Kon" };
-            Console.WriteLine($"Bonjour, jestem {fluffyHorse.Name}, moj wiek to: {fluffyHorse.Age}, zas gatunek: {fluffyHorse.Species}");
+            Console.WriteLine(fluffyHorse);
             fluffyHorse.move();
+            Console.WriteLine();
+
+            Fish fish = new Fish { Name = "Nemo", Age = 1, Species = "Blazenek" };
+            Console.WriteLine(fish);
+            fish.move();
+            Console.WriteLine();
+
+            Dog piesel = new Dog { Name = "Dyzio", Age = 5, Species = "Mops" };
+            Console.WriteLine(piesel);
+            piesel.move();
 
             //Collections();
             //Sort();
