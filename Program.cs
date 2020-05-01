@@ -10,7 +10,7 @@ namespace SebastianSuwalaHelloWorld
         public int Age { get; set; }
         public string Species { get; set; }
 
-        public void move() { Console.WriteLine("Mkne i hasam!"); }
+        public virtual void move() { Console.WriteLine("Mkne i hasam!"); }
 
         public override string ToString()
         {
@@ -18,8 +18,8 @@ namespace SebastianSuwalaHelloWorld
         }
     }
 
-    class Fish : Animal { new public void move() { Console.WriteLine("Bul bul bul"); } }
-    class Dog : Animal { new public void move() { Console.WriteLine("<Bieg> hau hau"); } }
+    class Fish : Animal { public override void move() { Console.WriteLine("Bul bul bul"); } }
+    class Dog : Animal { public override void move() { Console.WriteLine("<Bieg> hau hau"); } }
 
     class Program
     {
