@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace SebastianSuwalaHelloWorld
@@ -25,6 +24,47 @@ namespace SebastianSuwalaHelloWorld
     {
         static void Main(string[] args)
         {
+
+
+            //Classes();
+            //Collections();
+            //Sort();
+            //Tables();
+            //ConditionsAndLoops();
+            //Calculator();
+            Console.ReadKey();
+        }
+
+        private void insertSort(ref int[] table, string sizeAsString)
+        {
+            int size = int.Parse(sizeAsString);
+            int flag;
+
+            try
+            {
+                for (int i = 1; i < size; i++)
+                {
+                    flag = 0;
+                    for (int j = i - 1; j >= 0 && flag != 1;)
+                    {
+                        if (table[i] < table[j])
+                        {
+                            table[j + 1] = table[j];
+                            j--;
+                            table[j + 1] = table[i];
+                        }
+                        else flag = 1;
+                    }
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Console.WriteLine("Program napotkal nieistniejacy element! Awaryjne konczenie pracy!");
+            }
+        }
+
+        private static void Classes()
+        {
             Animal fluffyHorse = new Animal { Name = "Basiur", Age = 2, Species = "Kon" };
             Console.WriteLine(fluffyHorse);
             fluffyHorse.move();
@@ -43,13 +83,6 @@ namespace SebastianSuwalaHelloWorld
             Dog piesel = new Dog { Name = "Dyzio", Age = 5, Species = "Mops" };
             Console.WriteLine(piesel);
             piesel.move();
-
-            //Collections();
-            //Sort();
-            //Tables();
-            //ConditionsAndLoops();
-            //Calculator();
-            Console.ReadKey();
         }
 
         private static void Collections()
