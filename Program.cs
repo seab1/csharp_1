@@ -6,10 +6,93 @@ namespace SebastianSuwalaHelloWorld
     {
         static void Main(string[] args)
         {
+            Sort();
             //Tables();
             //ConditionsAndLoops();
             //Calculator();
             Console.ReadKey();
+        }
+
+        private static void Sort()
+        {
+            Console.WriteLine("Podaj rozmiar tablicy:");
+            string sizeAsString = Console.ReadLine();
+            Console.WriteLine("Podaj maksymalna wartosc jaka moze byc przechowywana w komorkach tablicy:");
+            string maxValueAsString = Console.ReadLine();
+
+            int[] table = null;
+
+            generateTable(ref table, sizeAsString, maxValueAsString);
+            Console.WriteLine("Tablica nieposortowana:");
+            writeTable(ref table);
+
+            Console.WriteLine();
+            bubbleSort(ref table, sizeAsString);
+
+            Console.WriteLine("Tablica posortowana:");
+            writeTable(ref table);
+        }
+
+        private static void writeTable(ref int[] table)
+        {
+            foreach (int number in table)
+            {
+                Console.Write($"{number} ");
+            }
+            Console.WriteLine();
+        }
+
+        private static void bubbleSort(ref int[] table, string sizeAsString)
+        {
+            try
+            {
+                int holder;
+                int size = int.Parse(sizeAsString);
+
+                for (int i = 0; i < size; i++)
+                    for (int j = 0; j < size - i - 1; j++)
+                        if (table[j] > table[j + 1])
+                        {
+                            holder = table[j];
+                            table[j] = table[j + 1];
+                            table[j + 1] = holder;
+                        }
+            }
+            catch(NullReferenceException)
+            {
+                Console.WriteLine("Program napotkal nieistniejacy element! Awaryjne konczenie pracy!");
+            }
+        }
+
+        private static int[] generateTable(ref int[] table, string sizeAsString, string maxValueAsString)
+        {
+            int[] zeroTable = { 0 };
+
+            try
+            {
+                int size = int.Parse(sizeAsString);
+                int maxValue = int.Parse(maxValueAsString);
+                Random randomNumber = new Random();
+
+                if (size > 0)
+                {
+                    table = new int[size];
+                    for (int i = 0; i < size; i++)
+                    {
+                        table[i] = randomNumber.Next(maxValue) + 1;
+                    }
+
+                    return table;
+                }
+                else Console.WriteLine("Rozmiar tablicy musi byc wiekszy od 0!");
+
+                return zeroTable;
+            }
+            catch
+            {
+                Console.WriteLine("Co najmniej jedna z podanych wartosci jest nieprawidlowa!");
+                return zeroTable;
+            }
         }
 
         private static void Tables()
@@ -30,14 +113,14 @@ namespace SebastianSuwalaHelloWorld
                     int[] someNumbers = new int[size];
                     for (int i = 0; i < size; i++)
                     {
-                        someNumbers[i] = randomNumber.Next(maxValue);
+                        someNumbers[i] = randomNumber.Next(maxValue) + 1;
                     }
 
                     foreach (int number in someNumbers)
                     {
                         Console.Write($"{number} ");
-                        Console.WriteLine();
                     }
+                    Console.WriteLine();
                 }
                 else Console.WriteLine("Rozmiar tablicy musi byc wiekszy od 0!");
             }
