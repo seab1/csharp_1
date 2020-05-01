@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SebastianSuwalaHelloWorld
 {
@@ -6,11 +8,63 @@ namespace SebastianSuwalaHelloWorld
     {
         static void Main(string[] args)
         {
-            Sort();
+            Collections();
+            //Sort();
             //Tables();
             //ConditionsAndLoops();
             //Calculator();
             Console.ReadKey();
+        }
+
+        private static void Collections()
+        {
+            List<int> list1 = new List<int>();
+            List<int> list2 = new List<int>();
+
+            for (int i = 1; i < 11; i++)
+            {
+                Console.WriteLine($"Podaj {i} liczbe listy:");
+                try
+                {
+                    int givenNumber = int.Parse(Console.ReadLine());
+                    list1.Add(givenNumber);
+                }
+                catch
+                {
+                    Console.WriteLine("Podano nieprawidlowy element! Awaryjne konczenie pracy!");
+                }
+            }
+
+            Console.WriteLine("Lista pierwsza przed modyfikacja:");
+            writeList(list1);
+            Console.WriteLine();
+            Console.WriteLine("Lista druga przed modyfikacja:");
+            Console.WriteLine("<Pusta>");
+            Console.WriteLine();
+
+            Console.WriteLine("Z listy pierwszej zostana usuniete wszystkie liczby mniejsze od 2, pozostale zostana skopiowane do listy drugiej");
+            Console.WriteLine();
+
+            for (int i = list1.Count - 1; i >= 0; i--)
+            {
+                if (list1[i] < 2) list1.RemoveAt(i);
+                else list2.Add(list1[i]);
+            }
+
+            Console.WriteLine("Lista pierwsza po modyfikacji:");
+            writeList(list1);
+            Console.WriteLine();
+            Console.WriteLine("Lista druga po modyfikacji:");
+            writeList(list2);
+            Console.WriteLine();
+        }
+
+        private static void writeList(List<int> list)
+        {
+            foreach (int number in list)
+            {
+                Console.Write($"{number} ");
+            }
         }
 
         private static void Sort()
@@ -149,7 +203,7 @@ namespace SebastianSuwalaHelloWorld
             } while (ifToContinue != "n" && ifToContinue != "N");
         }
 
-        public static double silnia(double number)
+        private static double silnia(double number)
         {
             if (number > 1) return number * silnia(number - 1);
             else return 1;
