@@ -6,9 +6,9 @@ namespace SebastianSuwalaHelloWorld
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Wpisz cos:");
-            string userValue = Console.ReadLine();
-            Console.WriteLine("Wpisales: " + userValue);
+            Console.WriteLine("Podaj liczbe calkowita:");
+            int userValue = int.Parse(Console.ReadLine());
+            Console.WriteLine($"Twoja liczba to: {userValue}");
             Console.ReadKey();
         }
     }
