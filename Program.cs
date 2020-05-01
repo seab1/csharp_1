@@ -17,6 +17,10 @@ namespace SebastianSuwalaHelloWorld
     {
         static void Main(string[] args)
         {
+            Animal fluffyHorse = new Animal { Name = "Basiur", Age = 2, Species = "Kon" };
+            Console.WriteLine($"Bonjour, jestem {fluffyHorse.Name}, moj wiek to: {fluffyHorse.Age}, zas gatunek: {fluffyHorse.Species}");
+            fluffyHorse.move();
+
             //Collections();
             //Sort();
             //Tables();
