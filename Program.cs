@@ -6,7 +6,7 @@ namespace SebastianSuwalaHelloWorld
     {
         static void Main(string[] args)
         {
-            Tables();
+            //Tables();
             //ConditionsAndLoops();
             //Calculator();
             Console.ReadKey();
@@ -47,7 +47,7 @@ namespace SebastianSuwalaHelloWorld
             }
         }
 
-        private static void Conditions()
+        private static void ConditionsAndLoops()
         {
             string ifToContinue = null;
 
