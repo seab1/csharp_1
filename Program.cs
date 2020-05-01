@@ -6,16 +6,20 @@ namespace SebastianSuwalaHelloWorld
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Podaj liczbe calkowita:");
+            Console.WriteLine("Podaj pierwsza liczbe:");
+            string number1AsString = Console.ReadLine();
+            Console.WriteLine("Podaj druga liczbe:");
+            string number2AsString = Console.ReadLine();
 
             try
             {
-                int userValue = int.Parse(Console.ReadLine());
-                Console.WriteLine($"Twoja liczba to: {userValue}");
+                double number1 = double.Parse(number1AsString);
+                double number2 = double.Parse(number2AsString);
+                Console.WriteLine($"{number2} + {number2} = {number1 + number2}");
             }
             catch
             {
-                Console.WriteLine("Nie podano prawidlowej wartosci!");
+                Console.WriteLine("Co najmniej jedna z podanych wartosci jest nieprawidlowa!");
             }
             Console.ReadKey();
         }
