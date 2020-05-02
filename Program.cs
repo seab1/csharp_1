@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SebastianSuwalaHelloWorld
 {
@@ -24,7 +25,7 @@ namespace SebastianSuwalaHelloWorld
     {
         static void Main(string[] args)
         {
-
+            ifYouAreBored();
 
             //Classes();
             //Collections();
@@ -35,7 +36,173 @@ namespace SebastianSuwalaHelloWorld
             Console.ReadKey();
         }
 
-        private void selectionSort(ref int[] table, string sizeAsString)
+        private static void ifYouAreBored()
+        {
+            Console.WriteLine("Podaj rozmiar tablicy:");
+            string sizeAsString = Console.ReadLine();
+            Console.WriteLine("Podaj maksymalna wartosc jaka moze byc przechowywana w komorkach tablicy:");
+            string maxValueAsString = Console.ReadLine();
+
+            int[] table = null;
+
+            generateTable(ref table, sizeAsString, maxValueAsString);
+            Console.WriteLine("Tablica nieposortowana:");
+            writeTable(ref table);
+            Console.WriteLine();
+
+            int option = menu();
+            action(ref table, sizeAsString, option);
+        }
+
+        static void binarySearch(int[] table, object key)
+        {
+            int result = Array.BinarySearch(table, key);
+
+            if (result < 0)
+            {
+                Console.WriteLine("Szukany element " + "({0}) nie wystepuje w tablicy", key);
+            }
+
+            else
+            {
+                Console.WriteLine("Szukany element " + "({0}) posiada indeks {1}", key, result);
+            }
+        }
+
+        private static void quicksort(ref int[] table, int left, int right)
+        {
+            var i = left;
+            var j = right;
+            var pivot = table[(left + right) / 2];
+            while (i < j)
+            {
+                while (table[i] < pivot) i++;
+                while (table[j] > pivot) j--;
+                if (i <= j)
+                {
+                    var tmp = table[i];
+                    table[i++] = table[j];
+                    table[j--] = tmp;
+                }
+            }
+            if (left < j) quicksort(ref table, left, j);
+            if (i < right) quicksort(ref table, i, right);
+        }
+
+        private static void action(ref int[] table, string sizeAsString, int option)
+        {
+            Console.WriteLine();
+
+            switch(option)
+            {
+                case 1:
+                    bubbleSort(ref table, sizeAsString);
+                    Console.WriteLine("Tablica posortowana:");
+                    writeTable(ref table);
+                    break;
+
+                case 2:
+                    insertSort(ref table, sizeAsString);
+                    Console.WriteLine("Tablica posortowana:");
+                    writeTable(ref table);
+                    break;
+
+                case 3:
+                    selectionSort(ref table, sizeAsString);
+                    Console.WriteLine("Tablica posortowana:");
+                    writeTable(ref table);
+                    break;
+
+                case 4:
+                    quicksort(ref table, 0, int.Parse(sizeAsString) - 1);
+                    Console.WriteLine("Tablica posortowana:");
+                    writeTable(ref table);
+                    break;
+
+                case 5:
+                    Stopwatch timer_bubble = new Stopwatch();
+                    Stopwatch timer_insert = new Stopwatch();
+                    Stopwatch timer_selection = new Stopwatch();
+                    Stopwatch timer_quick = new Stopwatch();
+
+                    timer_bubble.Start();
+                    bubbleSort(ref table, sizeAsString);
+                    timer_bubble.Stop();
+                    Console.WriteLine($"Czas wykonania algorytmu bubble sort to: {timer_bubble.ElapsedMilliseconds / 1000}");
+                    Console.WriteLine();
+
+                    timer_insert.Start();
+                    insertSort(ref table, sizeAsString);
+                    timer_insert.Stop();
+                    Console.WriteLine($"Czas wykonania algorytmu insert sort to: {timer_insert.ElapsedMilliseconds / 1000}");
+                    Console.WriteLine();
+
+                    timer_selection.Start();
+                    selectionSort(ref table, sizeAsString);
+                    timer_selection.Stop();
+                    Console.WriteLine($"Czas wykonania algorytmu selection sort to: {timer_selection.ElapsedMilliseconds / 1000}");
+                    Console.WriteLine();
+
+                    timer_quick.Start();
+                    quicksort(ref table, 0, int.Parse(sizeAsString) - 1);
+                    timer_quick.Stop();
+                    Console.WriteLine($"Czas wykonania algorytmu quicksort to: {timer_quick.ElapsedMilliseconds / 1000}");
+                    Console.WriteLine();
+
+                    quicksort(ref table, 0, int.Parse(sizeAsString) - 1);
+                    Console.WriteLine("Tablica posortowana:");
+                    writeTable(ref table);
+                    break;
+
+                case 6:
+                    Console.Write("Podaj liczbe, ktora chcesz wyszukac w tablicy, program znajdzie jej pierwsze wystapienie: ");
+                    try
+                    {
+                        int key = int.Parse(Console.ReadLine());
+                        binarySearch(table, key);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Podana wartosc jest nieprawidlowa!");
+                    }
+                    break;
+
+                case 7:
+                    Console.WriteLine("Konczenie pracy programu");
+                    break;
+
+                default:
+                    Console.WriteLine("Wybrana akcja nie istnieje!");
+                    break;
+            }
+        }
+
+        private static int menu()
+        {
+            Console.WriteLine("Wybierz akcje:");
+            Console.WriteLine("1) Bubble sort");
+            Console.WriteLine("2) Insert sort");
+            Console.WriteLine("3) Selection Sort");
+            Console.WriteLine("4) Quicksort");
+            Console.WriteLine("5) Wszystkie sortowania wraz z czasem dzialania algorytmow");
+            Console.WriteLine("6) Wyszukiwanie binarne");
+            Console.WriteLine("7) Wyjdz");
+
+            Console.Write("Twoj wybor: ");
+
+           try
+            {
+                int choice = int.Parse(Console.ReadLine());
+                return choice;
+            }
+            catch
+            {
+                Console.WriteLine("Nieprawidlowe wprowadzenie!");
+                return 7;
+            }
+        }
+
+        private static void selectionSort(ref int[] table, string sizeAsString)
         {
             int size = int.Parse(sizeAsString);
             int holder, minValue;
@@ -57,23 +224,24 @@ namespace SebastianSuwalaHelloWorld
             }
         }
 
-        private void insertSort(ref int[] table, string sizeAsString)
+        private static void insertSort(ref int[] table, string sizeAsString)
         {
             int size = int.Parse(sizeAsString);
-            int flag;
+            int flag, value;
 
             try
             {
                 for (int i = 1; i < size; i++)
                 {
+                    value = table[i];
                     flag = 0;
                     for (int j = i - 1; j >= 0 && flag != 1;)
                     {
-                        if (table[i] < table[j])
+                        if (value < table[j])
                         {
                             table[j + 1] = table[j];
                             j--;
-                            table[j + 1] = table[i];
+                            table[j + 1] = value;
                         }
                         else flag = 1;
                     }
