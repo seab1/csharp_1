@@ -35,6 +35,28 @@ namespace SebastianSuwalaHelloWorld
             Console.ReadKey();
         }
 
+        private void selectionSort(ref int[] table, string sizeAsString)
+        {
+            int size = int.Parse(sizeAsString);
+            int holder, minValue;
+
+            try
+            {
+                for (int i = 0; i < size - 1; i++)
+                {
+                    minValue = i;
+                    for (int j = i + 1; j < size; j++) if (table[j] < table[minValue]) minValue = j;
+                    holder = table[minValue];
+                    table[minValue] = table[i];
+                    table[i] = holder;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Console.WriteLine("Program napotkal nieistniejacy element! Awaryjne konczenie pracy!");
+            }
+        }
+
         private void insertSort(ref int[] table, string sizeAsString)
         {
             int size = int.Parse(sizeAsString);
