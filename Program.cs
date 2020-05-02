@@ -25,8 +25,7 @@ namespace SebastianSuwalaHelloWorld
     {
         static void Main(string[] args)
         {
-            ifYouAreBored();
-
+            //ifYouAreBored();
             //Classes();
             //Collections();
             //Sort();
